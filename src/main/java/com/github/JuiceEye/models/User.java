@@ -78,7 +78,6 @@ public class User {
         return "com.github.JuiceEye.models.User{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", userRole=" + userRole +
                 '}';
     }
