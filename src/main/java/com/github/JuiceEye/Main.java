@@ -2,7 +2,8 @@ package com.github.JuiceEye;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.github.JuiceEye.conrtrollers.Controller;
+import com.github.JuiceEye.conrtrollers.PostController;
+import com.github.JuiceEye.conrtrollers.UserController;
 import com.github.JuiceEye.deserializers.UserDeserializer;
 import com.github.JuiceEye.models.User;
 import com.github.JuiceEye.serializers.UserSerializer;
@@ -18,19 +19,19 @@ public class Main {
         mapper.registerModule(module);
 
         //Команды для пользователя
-        app.get("/users", Controller::getAllUsers);
-        app.get("/user/:userId", Controller::getUser);
-        app.post("/user", context -> Controller.createUser(context, mapper));
-        app.patch("/user/:userId", context -> Controller.updateUser(context, mapper));
-        app.delete("/user/:userId", Controller::deleteUser);
+        app.get("/users", UserController::getAllUsers);
+        app.get("/user/:userId", UserController::getUser);
+        app.post("/user", context -> UserController.createUser(context, mapper));
+        app.patch("/user/:userId", context -> UserController.updateUser(context, mapper));
+        app.delete("/user/:userId", UserController::deleteUser);
 
 
         //Команды для постов
-        app.get("/posts", Controller::getAllPosts);
-        app.get("/post/:postId", Controller::getPost);
-        app.post("/post", context -> Controller.createPost(context, mapper));
-        app.patch("/post/:postId", context -> Controller.updatePost(context, mapper));
-        app.delete("/post/:postId", Controller::deletePost);
+        app.get("/posts", PostController::getAllPosts);
+        app.get("/post/:postId", PostController::getPost);
+        app.post("/post", context -> PostController.createPost(context, mapper));
+        app.patch("/post/:postId", context -> PostController.updatePost(context, mapper));
+        app.delete("/post/:postId", PostController::deletePost);
         app.start(8080);
     }
 }
